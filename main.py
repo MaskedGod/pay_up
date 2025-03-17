@@ -1,11 +1,13 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.sql import text
 from app.api.auth.auth import auth_router
+from app.api.payments.payments import payments_router
 from app.db.database import get_db
 
 app = FastAPI()
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
+app.include_router(payments_router, prefix="/payments", tags=["payments"])
 
 
 @app.get("/")
